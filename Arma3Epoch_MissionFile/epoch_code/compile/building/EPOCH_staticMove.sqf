@@ -111,7 +111,7 @@ if (_class != "") then {
 	_EPOCH_1 = diag_tickTime;
 	_EPOCH_2 = diag_tickTime;
 	_nearestObjects = [];
-		
+
 /* eXpoch Vector building - Start new */
 	EPOCH_buildDirectionPitch = 0;
 	EPOCH_buildDirectionRoll = 0;
@@ -120,7 +120,7 @@ if (_class != "") then {
 	EPOCH_X_OFFSET = 0;
 	EPOCH_Y_OFFSET = 5;
 /* eXpoch Vector building - End new */
-		
+
 	while {EPOCH_target == _currentTarget} do {
 
 		_rejectMove = false;
@@ -134,7 +134,7 @@ if (_class != "") then {
 
 		_offSet = [EPOCH_X_OFFSET, EPOCH_Y_OFFSET, EPOCH_Z_OFFSET];
 		_pos2 = player modelToWorldVisual _offSet;
-		
+
 		if (surfaceIsWater _pos2) then {
 			_pos2 set[2, ((getPosASL player) select 2) + EPOCH_Z_OFFSET];
 		};
@@ -152,27 +152,44 @@ if (_class != "") then {
 			if (surfaceIsWater _pos2ATL) then {
 				_pos2ATL = ASLtoATL _pos2ATL;
 			};
-/* eXpoch Vector building - Start new */			
+
+/* eXpoch Vector building - Start deleted
+			EPOCH_target setposATL _pos2ATL;
+			EPOCH_target attachTo[player];
+eXpoch Vector building - End deleted */
+
+/* eXpoch Vector building - Start new */
 			EPOCH_target attachTo [EPOCH_target_attachedTo,[EPOCH_X_OFFSET,EPOCH_Y_OFFSET,EPOCH_Z_OFFSET]];
 			_newDirAndUp = [[sin EPOCH_buildDirection * cos EPOCH_buildDirectionPitch, cos EPOCH_buildDirection * cos EPOCH_buildDirectionPitch, sin EPOCH_buildDirectionPitch],[[ sin EPOCH_buildDirectionRoll,-sin EPOCH_buildDirectionPitch,cos EPOCH_buildDirectionRoll * cos EPOCH_buildDirectionPitch],-EPOCH_buildDirection] call BIS_fnc_rotateVector2D];
 			EPOCH_target setVectorDirAndUp _newDirAndUp;
-			EPOCH_target setposATL _pos2ATL;
-/* eXpoch Vector building - End new */			
+/* eXpoch Vector building - End new */
+
 		};
 
-		if (EPOCH_doRotate) then {	
+		if (EPOCH_doRotate) then {
+		
+/* eXpoch Vector building - Start deleted
+			_dir2 = [vectorDir player, EPOCH_buildDirection] call BIS_fnc_returnVector;
+			_up2 = (vectorUp player);
+			EPOCH_doRotate = false;
+			EPOCH_target setVectorDirAndUp [_dir2,_up2];
+eXpoch Vector building - End deleted */
+
 /* eXpoch Vector building - Start new */
 			EPOCH_target attachTo [EPOCH_target_attachedTo,[EPOCH_X_OFFSET,EPOCH_Y_OFFSET,EPOCH_Z_OFFSET]];
 			_newDirAndUp = [[sin EPOCH_buildDirection * cos EPOCH_buildDirectionPitch, cos EPOCH_buildDirection * cos EPOCH_buildDirectionPitch, sin EPOCH_buildDirectionPitch],[[ sin EPOCH_buildDirectionRoll,-sin EPOCH_buildDirectionPitch,cos EPOCH_buildDirectionRoll * cos EPOCH_buildDirectionPitch],-EPOCH_buildDirection] call BIS_fnc_rotateVector2D];
 			EPOCH_target setVectorDirAndUp _newDirAndUp;
 			EPOCH_doRotate = false;
-/* eXpoch Vector building - End new */			
+/* eXpoch Vector building - End new */
+
 		};
 
 		{
+
 /* eXpoch Vector building - Start new */
 			if!(EPOCH_target_attachedTo isEqualTo player)exitWith{};
 /* eXpoch Vector building - End new */
+
 			_nearestObject = _x;
 			if !(isNull EP_snap) then {
 				if ((_pos2 distance EP_snapPos) < _maxSnapDistance) then {
@@ -286,18 +303,18 @@ if (_class != "") then {
 							_arr_snapPoints = [];
 							EPOCH_arr_snapPoints = [];
 							{
-								_pos1_snap = _currentTarget modelToWorldVisual (_x select 0);
-								_pos2_snap = _currentTarget modelToWorldVisual (_x select 1);
-								_ins = lineIntersectsSurfaces [AGLToASL _pos1_snap, AGLToASL _pos2_snap,player,_currentTarget,true,1,"VIEW","FIRE"];
-								if (count _ins > 0) then {
+						        _pos1_snap = _currentTarget modelToWorldVisual (_x select 0);
+						        _pos2_snap = _currentTarget modelToWorldVisual (_x select 1);
+						        _ins = lineIntersectsSurfaces [AGLToASL _pos1_snap, AGLToASL _pos2_snap,player,_currentTarget,true,1,"VIEW","FIRE"];
+						        if (count _ins > 0) then {
 									if (surfaceIsWater _snapPosition) then {
 										_arr_snapPoints pushBackUnique (_ins select 0 select 0);
 									} else {
 										_arr_snapPoints pushBackUnique ASLToATL(_ins select 0 select 0);
 									};
-								};
+						        };
 								if (count _arr_snapPoints >= 2) exitWith { EPOCH_arr_snapPoints = _arr_snapPoints; }
-							} forEach _snapChecks;
+						    } forEach _snapChecks;
 						};
 
 					};
@@ -317,6 +334,7 @@ if (_class != "") then {
 					};
 				};
 			};
+
 		} forEach _nearestObjects;
 
 		if ((diag_tickTime - _EPOCH_1) > 1) then {

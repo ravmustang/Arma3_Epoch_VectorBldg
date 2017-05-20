@@ -3,7 +3,7 @@
 # ArmA3_Epoch_VectorBuilding
 
 ## Installation
-These files modify the original A3EPOCH as of March 26, 2017.
+These files modify the original A3EPOCH as of May 09, 2017.
 Merge these files into your mission.
 
 ## Credits
@@ -19,12 +19,12 @@ He-Man
 #### EPOCH_buildDirectionPitch = 0; <---(This is on line 17)
 #### EPOCH_buildDirectionRoll = 0;
 #### EPOCH_target_attachedTo = player;
-####..
+####.
 
 ## 2. Add to "missionFile >> epoch_code >> compile >> setup >> EPOCH_clientKeyMap.sqf"
 
 #### Line 49
-#### ["Build: Rotate RIGHT", "EPOCH_keysBuildRotR", 0x10],<---(This is on line 49)
+#### ["Build: Rotate RIGHT", "EPOCH_keysBuildRotR", 0x10], <---(This is on line 49 - Add the Comma!)
 #### ["Build: Vector LEFT", "eXpoch_keysVectorTiltL", 0xCB],
 #### ["Build: Vector RIGHT", "eXpoch_keysVectorTiltR", 0xCD],
 #### ["Build: Vector AWAY", "eXpoch_keysVectorTiltAwy", 0xC8],
