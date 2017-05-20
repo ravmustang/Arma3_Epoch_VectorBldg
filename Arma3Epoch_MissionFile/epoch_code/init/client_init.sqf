@@ -12,6 +12,13 @@
     Github:
     https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_code/init/client_init.sqf
 */
+
+/* eXpoch Vector building - Start new */
+EPOCH_buildDirectionPitch = 0;
+EPOCH_buildDirectionRoll = 0;
+EPOCH_target_attachedTo = player;
+/* eXpoch Vector building - End new */
+
 EPOCH_CraftingItem = "";
 EPOCH_ESP_TARGETS = [];
 EPOCH_ESPMAP_TARGETS = [];
@@ -53,10 +60,6 @@ EPOCH_lootObjects = [];
 EPOCH_soundLevel = 1;
 EPOCH_arr_interactedObjs = [];
 EPOCH_buildOption = 0;
-EPOCH_buildDirection = 0;
-EPOCH_buildDirectionPitch = 0;
-EPOCH_buildDirectionRoll = 0;
-EPOCH_target_attachedTo = player;
 EPOCH_nearestLocations = [];
 EPOCH_lastFiredLocation = [];
 
@@ -66,15 +69,9 @@ rmx_var_dynamicHUD_groupCTRL = [];
 
 ["EPOCH_onEachFrame", "onEachFrame", EPOCH_onEachFrame] call BIS_fnc_addStackedEventHandler;
 
-EPOCH_LastAirDrop = time;
-EPOCH_AirDropCheck = getNumber(getMissionConfig "CfgEpochAirDrop" >> "AirDropFreq");
-if(EPOCH_AirDropCheck < 120)then{EPOCH_AirDropCheck = 120;};
-EPOCH_AirDropChance = getNumber(getMissionConfig "CfgEpochAirDrop" >> "AirDropChance");
-if(EPOCH_AirDropChance < 0)then{EPOCH_AirDropChance = 101;EPOCH_AirDropCheck = 99999;};
-
 EPOCH_droneRndChance = 100;
 EPOCH_sapperRndChance = 100;
-EPOCH_zombieRndChance = 50;
+EPOCH_zombieRngChance = 50;
 
 // Custom Keys
 EPOCH_keysActionPressed = false; //prevents EH spam

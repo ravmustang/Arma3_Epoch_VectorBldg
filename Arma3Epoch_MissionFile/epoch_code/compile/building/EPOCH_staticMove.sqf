@@ -112,9 +112,14 @@ if (_class != "") then {
 	_EPOCH_2 = diag_tickTime;
 	_nearestObjects = [];
 		
-	EPOCH_buildDirection = 0;
+/* eXpoch Vector building - Start new */
 	EPOCH_buildDirectionPitch = 0;
 	EPOCH_buildDirectionRoll = 0;
+	EPOCH_target_attachedTo = player;
+	EPOCH_Z_OFFSET = 0;
+	EPOCH_X_OFFSET = 0;
+	EPOCH_Y_OFFSET = 5;
+/* eXpoch Vector building - End new */
 		
 	while {EPOCH_target == _currentTarget} do {
 
@@ -147,22 +152,27 @@ if (_class != "") then {
 			if (surfaceIsWater _pos2ATL) then {
 				_pos2ATL = ASLtoATL _pos2ATL;
 			};
-			
+/* eXpoch Vector building - Start new */			
 			EPOCH_target attachTo [EPOCH_target_attachedTo,[EPOCH_X_OFFSET,EPOCH_Y_OFFSET,EPOCH_Z_OFFSET]];
 			_newDirAndUp = [[sin EPOCH_buildDirection * cos EPOCH_buildDirectionPitch, cos EPOCH_buildDirection * cos EPOCH_buildDirectionPitch, sin EPOCH_buildDirectionPitch],[[ sin EPOCH_buildDirectionRoll,-sin EPOCH_buildDirectionPitch,cos EPOCH_buildDirectionRoll * cos EPOCH_buildDirectionPitch],-EPOCH_buildDirection] call BIS_fnc_rotateVector2D];
 			EPOCH_target setVectorDirAndUp _newDirAndUp;
 			EPOCH_target setposATL _pos2ATL;
+/* eXpoch Vector building - End new */			
 		};
 
 		if (EPOCH_doRotate) then {	
+/* eXpoch Vector building - Start new */
 			EPOCH_target attachTo [EPOCH_target_attachedTo,[EPOCH_X_OFFSET,EPOCH_Y_OFFSET,EPOCH_Z_OFFSET]];
 			_newDirAndUp = [[sin EPOCH_buildDirection * cos EPOCH_buildDirectionPitch, cos EPOCH_buildDirection * cos EPOCH_buildDirectionPitch, sin EPOCH_buildDirectionPitch],[[ sin EPOCH_buildDirectionRoll,-sin EPOCH_buildDirectionPitch,cos EPOCH_buildDirectionRoll * cos EPOCH_buildDirectionPitch],-EPOCH_buildDirection] call BIS_fnc_rotateVector2D];
 			EPOCH_target setVectorDirAndUp _newDirAndUp;
 			EPOCH_target setposATL _pos2;
+/* eXpoch Vector building - End new */			
 		};
 
 		{
+/* eXpoch Vector building - Start new */
 			if!(EPOCH_target_attachedTo isEqualTo player)exitWith{};
+/* eXpoch Vector building - End new */
 			_nearestObject = _x;
 			if !(isNull EP_snap) then {
 				if ((_pos2 distance EP_snapPos) < _maxSnapDistance) then {
