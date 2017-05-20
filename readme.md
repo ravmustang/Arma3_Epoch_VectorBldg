@@ -15,12 +15,11 @@ He-Man
 
 ## 1. Add to "missionFile >> epoch_code >> init >> Client_Init.sqf"
 
-#### Line 56
-#### EPOCH_buildDirection = 0;<---(This is on line 56)
-#### EPOCH_buildDirectionPitch = 0;
+#### Line 17
+#### EPOCH_buildDirectionPitch = 0; <---(This is on line 17)
 #### EPOCH_buildDirectionRoll = 0;
 #### EPOCH_target_attachedTo = player;
-####.
+####..
 
 ## 2. Add to "missionFile >> epoch_code >> compile >> setup >> EPOCH_clientKeyMap.sqf"
 
