@@ -165,7 +165,7 @@ if (_class != "") then {
 			EPOCH_target attachTo [EPOCH_target_attachedTo,[EPOCH_X_OFFSET,EPOCH_Y_OFFSET,EPOCH_Z_OFFSET]];
 			_newDirAndUp = [[sin EPOCH_buildDirection * cos EPOCH_buildDirectionPitch, cos EPOCH_buildDirection * cos EPOCH_buildDirectionPitch, sin EPOCH_buildDirectionPitch],[[ sin EPOCH_buildDirectionRoll,-sin EPOCH_buildDirectionPitch,cos EPOCH_buildDirectionRoll * cos EPOCH_buildDirectionPitch],-EPOCH_buildDirection] call BIS_fnc_rotateVector2D];
 			EPOCH_target setVectorDirAndUp _newDirAndUp;
-			EPOCH_target setposATL _pos2;
+			EPOCH_doRotate = false;
 /* eXpoch Vector building - End new */			
 		};
 
