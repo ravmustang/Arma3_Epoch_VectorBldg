@@ -7,9 +7,9 @@ These files modify the original A3EPOCH as of May 09, 2017.
 Merge these files into your mission.
 
 ## Credits
-DonkeyPunch Community Gaming Development Team
-DirtySanchez
-He-Man
+#### DonkeyPunch Community Gaming Development Team
+#### DirtySanchez
+#### He-Man
 
 ####.
 
