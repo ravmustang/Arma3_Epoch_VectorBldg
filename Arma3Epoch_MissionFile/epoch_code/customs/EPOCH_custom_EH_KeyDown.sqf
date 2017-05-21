@@ -53,10 +53,12 @@ _handled = false;
 				case eXpoch_keysVectorTiltTwd: { _adj = 1;if(_shift)then{_adj = 2.5};if(_alt)then{_adj = 0.5};EPOCH_buildDirectionPitch = (EPOCH_buildDirectionPitch + _adj) min 180; EPOCH_doRotate = true; _handled = true };
 				case eXpoch_keysVectorSnapToObject: { 
 					if (EPOCH_target_attachedTo isEqualTo player) then {
+						if !(cursorobject iskindof "all" && player distance cursorobject < 7) exitwith {
+							["No Object for snap found...", 5] call Epoch_message;
+						};
 						[]spawn{
 							disableSerialization;
-							_result = ["Do you really want to snap to this object?", "Confirm", "Yes", "Nah"] call BIS_fnc_guiMessage;
-							waitUntil { !isNil "_result" };
+							_result = [format ["Do you really want to snap to %1",typeof cursorobject], "Confirm", "Yes", "Nah"] call BIS_fnc_guiMessage;
 							if (_result) then
 							{
 								EPOCH_X_OFFSET=0.1;EPOCH_Y_OFFSET=0.1;EPOCH_Z_OFFSET=0.5;
