@@ -29,7 +29,6 @@ Merge these files into your mission.
 #### ["Build: Vector RIGHT", "eXpoch_keysVectorTiltR", 0xCD],
 #### ["Build: Vector AWAY", "eXpoch_keysVectorTiltAwy", 0xC8],
 #### ["Build: Vector TOWARD", "eXpoch_keysVectorTiltTwd", 0xD0],
-#### ["Build: Object SnapTo", "eXpoch_keysVectorSnapToObject", 0x52],
 #### ["Build: Reset Object", "eXpoch_keysVectorResetObject", 0x4C]
 ####.
 
@@ -38,6 +37,15 @@ Merge these files into your mission.
 #### This is a large edit and you will need to view the modified file included
 
 ## 4. Replace with this file "missionFile >> epoch_code >> compile >> building >> EPOCH_staticMove.sqf"
+
+#### This is a large edit and you will need to view the modified file included
+
+## 5. Replace with this file "missionFile >> epoch_config >> Configs >> CfgActionMenu >> CfgActionMenu_self.hpp"
+
+#### This is a large edit and you will need to view the modified file included
+
+## 6. Search in your BE-Filter scripts.txt for "7 createVehicleLocal" and add:
+#### !="\"Sign_Arrow_Direction_Yellow_F\" createVehicleLocal"
 
 #### This is a large edit and you will need to view the modified file included
 
@@ -62,3 +70,12 @@ Merge these files into your mission.
 	- "Script" being any work, "code", comments not a part of the original program or software. 
 	- "Code" does not limit the definition to only the parts that operate within "Arma", but is a broad term used to define the entire product within including all comments and remarks made by "WE".
 	- "Credits" being the author("DonkeyPunch Community Gaming" or "DirtySanchez") and website(http://DonkeyPunch.INFO)
+
+Last Changelogs:
+2017-05-27
+	- Fixed: 90° and 270° Snap was broken in Epoch
+	- Fixed: Sometimes rotated elements rotate back on save
+	- Added: Help-Arrow to indicate door-opening direction
+	- Added: Max building height now will be checked direcly by building element placement
+	- Changed: Replaced 0/90/180/270° direction build mode with "Rorate 90°"
+	- Changed: Attaching building element to other element replaced by "detach building element" and moved to DynaMenu (Space Menu)
